@@ -49,6 +49,7 @@ Route by schema entry kind before importing.
 | `module` | `message` | `import message` | [message-module](https://pythonide.xin/docs/pages/message-module/) | `compose_sheet` |
 | `module` | `motion` | `import motion` | [motion-module](https://pythonide.xin/docs/pages/motion-module/) | `api` |
 | `module` | `music` | `import music` | [music-module](https://pythonide.xin/docs/pages/music-module/) | `api` |
+| `module` | `music_player` | `import music_player` | [music-player-module](https://pythonide.xin/docs/pages/music-player-module/) | `api` |
 | `module` | `network` | `import network` | [network-module](https://pythonide.xin/docs/pages/network-module/) | `api` |
 | `module` | `nfc` | `import nfc` | [nfc-module](https://pythonide.xin/docs/pages/nfc-module/) | `system_picker` |
 | `module` | `notification` | `import notification` | [notification-module](https://pythonide.xin/docs/pages/notification-module/) | `api` |

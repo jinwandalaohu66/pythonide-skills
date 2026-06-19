@@ -85,7 +85,7 @@ def ensure_photos_access():
 
 ### Media & vision
 
-`audio_recorder`, `audio_session`, `avplayer`, `coreml`, `media_composer`, `music`, `now_playing`, `pdf`, `photos`, `qrcode`, `shazam`, `sound`, `speech`, `speech_recognition`, `video_recorder`, `vision`, `vision_helper`
+`audio_recorder`, `audio_session`, `avplayer`, `coreml`, `media_composer`, `music`, `music_player`, `now_playing`, `pdf`, `photos`, `qrcode`, `shazam`, `sound`, `speech`, `speech_recognition`, `video_recorder`, `vision`, `vision_helper`
 
 ### Connectivity & background
 
@@ -110,6 +110,7 @@ def ensure_photos_access():
 | Share sheet in AppUI | `appui.ShareLink` (topic `share` has no import) |
 | File picker in AppUI | `appui.FileImporter` (topic `file_picker` has no import) |
 | Embedded AppUI video | `appui.PlayerController` + `appui.VideoPlayer` |
+| Custom music queue player | `music_player` |
 | Script-only media playback | `avplayer` |
 | On-device ML | `coreml`, `vision`, `vision_helper`, `foundation_models` |
 
