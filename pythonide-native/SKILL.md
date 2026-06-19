@@ -3,7 +3,7 @@ name: pythonide-native
 description: Choose and implement PythonIDE iOS native modules for permissions, device state, sensors, storage, keychain, photos, camera, location, notifications, networking, Bluetooth, health, speech, media, and system actions. Use with pythonide-appui when a MiniApp needs native capability behind user-triggered callbacks.
 license: MIT
 version: "1.0.0"
-last_updated: "2026-06-10"
+last_updated: "2026-06-19"
 user_invocable: true
 ---
 
@@ -122,7 +122,9 @@ Full key-by-key routing: [references.md](references.md).
 - Do not use `permission.status("notification")`; use `notifications`
 - Do not prompt permissions, scan hardware, or schedule notifications at import time or from AppUI `body()`
 - Do not store secrets in `storage`
+- Do not import CPython `sqlite3` directly in MiniApps; use `database`, which is backed by the host Swift SQLite bridge
 - Do not use `avplayer` for AppUI embedded video controls
+- Do not pass music provider IDs or unresolved search rows to `music_player.prepare`, `prefetch_next`, or `set_queue(..., preload_count=...)`; resolve them to real audio `url` values first
 - Do not hide denied, cancelled, or offline outcomes
 - Do not import `c_extensions` as runtime code; it is reference-only
 
@@ -140,6 +142,7 @@ Full key-by-key routing: [references.md](references.md).
 - Wrong module → re-check [references.md](references.md) and schema `kind`
 - Offline failures → `network.is_connected`, `network.connection_type` before expensive work
 - Missing authorization → module `authorization_status` / `request_access`, else `permission.status` / `permission.request`
+- Slow music next-track → resolve and cache playback URLs in the MiniApp/data layer, then use `music_player.set_queue(..., preload_count=3)` and `music_player.prefetch_next(3)` for host-side AVPlayer preparation
 
 ## Examples
 

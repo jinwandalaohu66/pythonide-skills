@@ -30,7 +30,7 @@ Chinese module pages on pythonide.xin are valid deep references for scenarios an
 4. Write named zero-argument callbacks; callbacks mutate state or call native APIs.
 5. Keep `body()` pure: return a view tree only. No permissions, network, storage writes, notifications, timers started, or navigation side effects inside `body()`.
 6. End with exactly one `appui.run(body, state=state, presentation=...)`.
-7. For editable business data, load with `storage.get_json(..., default)` at startup and persist after mutations.
+7. For editable business data, use `storage.get_json(..., default)` only for small settings; use `database` for queryable records, caches, favorites, history, playlists, or large lists.
 
 ## Entry Pattern
 
@@ -73,8 +73,8 @@ appui.run(body, state=state, presentation="fullscreen_with_close")
 - Dynamic rows: `List + ForEach` with stable `key`
 - Master-detail: `NavigationStack + NavigationLink`
 - Product areas: `TabView + Tab`, each tab owns a `NavigationStack`
-- Continuing bottom tasks: `TabView + .expandable_bottom_accessory(compact=..., expanded=...)`
-- On iOS 26, `.expandable_bottom_accessory` expands in the host root view with a continuous overlay, not as a sheet. Use it for Apple Music-style mini-player expansion; add matching `.matched_geometry_effect(...)` ids to compact/expanded child views when shared-element motion matters.
+- Continuing bottom tasks: `TabView + .tab_view_bottom_accessory(...) + .sheet(...)`
+- Use `.tab_view_bottom_accessory` for the compact persistent row and `.sheet(detents=..., drag_indicator=...)` for the full panel. Do not invent an expandable bottom accessory API.
 - Search: native `.searchable(...)`; do not hand-roll search bars
 - Toolbar actions in fullscreen apps; `fullscreen_with_close` already provides close
 - Stable item IDs; mutate by id, never by filtered index
@@ -87,7 +87,7 @@ appui.run(body, state=state, presentation="fullscreen_with_close")
 - Use semantic system colors: `systemBackground`, `label`, `secondaryLabel`, `systemBlue`, etc.
 - Do not hard-code hex/RGB unless the API requires it
 - Ordinary rows/settings/todos should stay `List`/`Form` native-first; reserve custom dashboard layouts for true dashboard/media surfaces
-- Use `.expandable_bottom_accessory` for persistent playback, podcast, recording, download, timer, or navigation state instead of making that ongoing task a dedicated tab
+- Use `.tab_view_bottom_accessory` plus `.sheet` for persistent playback, podcast, recording, download, timer, or navigation state instead of making that ongoing task a dedicated tab
 
 ## Native Integration
 
@@ -99,6 +99,7 @@ appui.run(body, state=state, presentation="fullscreen_with_close")
 - Prefer AppUI bridge components before imperative modules when the control is inline in the UI
 - AppUI embedded video: `PlayerController` + `VideoPlayer`; do not use `import avplayer` unless the user explicitly wants script-level playback
 - Secrets → `keychain`; small settings → `storage`; queryable records → `database`
+- Do not import CPython `sqlite3` directly in MiniApps; use `database`
 
 ### AppUI Bridge Components
 

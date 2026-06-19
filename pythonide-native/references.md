@@ -9,6 +9,18 @@ Machine-readable contracts and the full schema-backed routing table for `pythoni
 - [llms-full.txt](https://pythonide.xin/llms-full.txt)
 - [miniapp native capabilities](https://pythonide.xin/docs/pages/miniapp-native-capabilities/)
 
+## Persistence Boundary
+
+- Use `database` for queryable records, caches, favorites, history, playlists, and SQL transactions.
+- Do not import CPython `sqlite3` directly in MiniApps; `database` is the supported host-backed SQLite bridge.
+- Keep small non-secret preferences in `storage`, and credentials in `keychain`.
+
+## Music Playback Preloading
+
+- `music_player.set_queue(..., preload_count=N)`, `music_player.prefetch_next(N)`, and `music_player.prepare(song)` only work with songs that already contain a real audio `url`.
+- Resolve provider IDs, search-result IDs, signed URLs, or aggregation-service records in the MiniApp/data layer first, cache the playable URL with an expiry, then hand the resolved song to `music_player`.
+- Use `music_player.preload_state()` to inspect prepared items when next-track playback still feels slow.
+
 ## Entry Routing
 
 Route by schema entry kind before importing.
