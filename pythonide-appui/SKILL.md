@@ -2,8 +2,8 @@
 name: pythonide-appui
 description: Build or modify PythonIDE AppUI MiniApps with native navigation, forms, lists, search, tabs, toolbars, presentation, storage, and AppUI media bridges. Use when the user wants an interactive iOS MiniApp, settings screen, list/detail app, or native UI that may also need photos, camera, location, maps, video, or share.
 license: MIT
-version: "1.0.0"
-last_updated: "2026-06-10"
+version: "1.1.0"
+last_updated: "2026-06-19"
 user_invocable: true
 ---
 
@@ -73,6 +73,7 @@ appui.run(body, state=state, presentation="fullscreen_with_close")
 - Dynamic rows: `List + ForEach` with stable `key`
 - Master-detail: `NavigationStack + NavigationLink`
 - Product areas: `TabView + Tab`, each tab owns a `NavigationStack`
+- Continuing bottom tasks: `TabView + .expandable_bottom_accessory(compact=..., expanded=...)`
 - Search: native `.searchable(...)`; do not hand-roll search bars
 - Toolbar actions in fullscreen apps; `fullscreen_with_close` already provides close
 - Stable item IDs; mutate by id, never by filtered index
@@ -85,6 +86,7 @@ appui.run(body, state=state, presentation="fullscreen_with_close")
 - Use semantic system colors: `systemBackground`, `label`, `secondaryLabel`, `systemBlue`, etc.
 - Do not hard-code hex/RGB unless the API requires it
 - Ordinary rows/settings/todos should stay `List`/`Form` native-first; reserve custom dashboard layouts for true dashboard/media surfaces
+- Use `.expandable_bottom_accessory` for persistent playback, podcast, recording, download, timer, or navigation state instead of making that ongoing task a dedicated tab
 
 ## Native Integration
 
@@ -139,6 +141,7 @@ appui.run(body, state=state, presentation="fullscreen_with_close")
 - No `children=` for `VStack`/`HStack`; pass child lists positionally
 - No `NavigationStack([...])`; one root view only
 - No `ScrollView(VStack(...))` for ordinary lists → use `List(ForEach(...))`
+- No dedicated playback/download/recording tab when the expected product pattern is a compact bottom bar that expands into a full panel
 - No `Image(...).on_tap(...)` as a button → use `Button`
 - No guessed SwiftUI-only APIs; verify against schema/stubs
 - No tkinter, PyQt, Flask, Streamlit, or browser frameworks
