@@ -74,6 +74,7 @@ appui.run(body, state=state, presentation="fullscreen_with_close")
 - Master-detail: `NavigationStack + NavigationLink`
 - Product areas: `TabView + Tab`, each tab owns a `NavigationStack`
 - Continuing bottom tasks: `TabView + .expandable_bottom_accessory(compact=..., expanded=...)`
+- On iOS 26, `.expandable_bottom_accessory` expands in the host root view with a continuous overlay, not as a sheet. Use it for Apple Music-style mini-player expansion; add matching `.matched_geometry_effect(...)` ids to compact/expanded child views when shared-element motion matters.
 - Search: native `.searchable(...)`; do not hand-roll search bars
 - Toolbar actions in fullscreen apps; `fullscreen_with_close` already provides close
 - Stable item IDs; mutate by id, never by filtered index
