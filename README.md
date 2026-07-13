@@ -96,7 +96,6 @@ AppUI 常用能力有两种接法：
 - [PythonIDE 官网 / 文档](https://pythonide.xin)
 - [本仓库](https://github.com/Python-IDE/pythonide-skills)
 - [Agent Skills 规范](https://agentskills.io)
-- [skills.sh 收录](https://skills.sh/Python-IDE/pythonide-skills)
 
 ## License
 
