@@ -16,13 +16,13 @@
 
 ```bash
 # 仅当前项目
-npx skills add jinwandalaohu66/pythonide-skills
+npx skills add Python-IDE/pythonide-skills
 
 # 全局（推荐，所有项目可用）
-npx skills add jinwandalaohu66/pythonide-skills -g
+npx skills add Python-IDE/pythonide-skills -g
 
 # 仅安装到 Cursor
-npx skills add jinwandalaohu66/pythonide-skills -a cursor -g
+npx skills add Python-IDE/pythonide-skills -a cursor -g
 ```
 
 安装后**重启 Agent** 即可生效。
@@ -94,9 +94,9 @@ AppUI 常用能力有两种接法：
 ## 链接
 
 - [PythonIDE 官网 / 文档](https://pythonide.xin)
-- [本仓库](https://github.com/jinwandalaohu66/pythonide-skills)
+- [本仓库](https://github.com/Python-IDE/pythonide-skills)
 - [Agent Skills 规范](https://agentskills.io)
-- [skills.sh 收录](https://skills.sh/jinwandalaohu66/pythonide-skills)
+- [skills.sh 收录](https://skills.sh/Python-IDE/pythonide-skills)
 
 ## License
 
